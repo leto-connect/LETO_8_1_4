@@ -5,39 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>★LETO★</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .main-image {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .playing {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
     <h1>LETO_8_1_4</h1>
-    <img src="disk.png" alt="image" class="main-image">
-    <div class="buttons">
-        <a href="https://www.youtube.com/@leto_official" class="button">YOUTUBE LINK</a>
-        <a href="https://leto08.bandcamp.com/" class="button" target="_blank">BANDCAMP LINK</a>
-    <div class="buttons2">
-        <a href="https://open.spotify.com/artist/285lBSkYP90rbAfrASyMnQ?si=uhF8aI1SR0e8zkoNOpcDSQ" class="button" target="_blank">SPOTIFY LINK</a>
-        <a href="https://music.apple.com/kr/artist/%EB%A0%88%ED%86%A0/1442391219" class="button" target="_blank">APPLE MUSIC LINK</a>
-    </div>
+    
+    <img src="disk.png" alt="image" class="main-image" onclick="toggleMusic()">
+
     <audio id="bgm" src="LETO _ UTP-101MK2.mp3" autoplay loop></audio>
-    <button id="player" onclick="toggleMusic()">⏸</button>
 
     <footer>
     © 2026 LETO_8_1_4
     </footer>
     
     <script>
-
         const audio = document.getElementById("bgm");
-        const button = document.getElementById("player");
+        const img = document.querySelector(".main-image");
 
         function toggleMusic() {
             if (audio.paused) {
                 audio.play();
-                button.textContent = "⏸";
+                img.classList.add("playing");
             } else {
-                audio
-                    audio.pause();
-                    button.textContent = "▶";
+                audio.pause();
+                img.classList.remove("playing");
             }
         }
+
+        audio.addEventListener("play", () => {
+            img.classList.add("playing");
+        });
     </script>
 </body>
 </html>
